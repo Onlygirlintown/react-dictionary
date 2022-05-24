@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Definition from "./Definition";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState("");
+  let [definition, setDefinition] = useState("");
 
   function handleResponse(response) {
-    console.log(response);
+    setDefinition(response.data[0].meanings[0].definitions[0].definition);
   }
 
   function search(event) {
@@ -28,6 +30,8 @@ export default function Dictionary() {
         <input type="search" autoFocus={true} onChange={keyWordChange} />
         <input type="submit" />
       </form>
+      <h2 className="text-capitalize">{keyword}</h2>
+      <Definition definition={definition} />
     </div>
   );
 }
