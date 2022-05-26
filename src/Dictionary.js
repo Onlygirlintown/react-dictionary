@@ -30,7 +30,6 @@ export default function Dictionary() {
         <input type="search" autoFocus={true} onChange={keyWordChange} />
         <input type="submit" />
       </form>
-      <h2 className="text=capitalize">{keyword}</h2>
       <Results results={results} />
     </div>
   );
