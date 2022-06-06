@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Results from "./Results";
 import Photos from "./Photos";
+import Word from "./Word";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState("");
@@ -9,11 +10,11 @@ export default function Dictionary() {
   let [photos, setPhotos] = useState("");
 
   function handleDictionaryResponse(response) {
+    console.log(response);
     setResults(response.data[0]);
   }
 
   function handlePexelsResponse(response) {
-    console.log(response);
     setPhotos(response.data.photos);
   }
 
@@ -39,12 +40,18 @@ export default function Dictionary() {
     setKeyword(event.target.value);
   }
   return (
-    <div className="Dictionary">
+    <div className="Dictionary row">
       <form onSubmit={search}>
         <input type="search" autoFocus={true} onChange={keyWordChange} />
         <input type="submit" />
       </form>
-      <Photos photos={photos} />
+      <div className="col">
+        <Word results={results} />
+      </div>
+      <div className="col">
+        <Photos photos={photos} />
+      </div>
+
       <Results results={results} />
     </div>
   );

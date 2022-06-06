@@ -1,4 +1,5 @@
 import React from "react";
+import "./photos.css";
 
 export default function Photos(props) {
   console.log(props);
@@ -12,7 +13,7 @@ export default function Photos(props) {
               <a href={photos.src.original} target="_blank" rel="noreferrer">
                 <img
                   src={photos.src.landscape}
-                  className="img-fluid"
+                  className="img-fluid photos"
                   alt={photos.alt}
                 />
               </a>
