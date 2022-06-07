@@ -3,6 +3,7 @@ import axios from "axios";
 import Results from "./Results";
 import Photos from "./Photos";
 import Word from "./Word";
+import "./Dictionary.css";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState("");
@@ -41,9 +42,14 @@ export default function Dictionary() {
   }
   return (
     <div className="Dictionary row">
-      <form onSubmit={search}>
-        <input type="search" autoFocus={true} onChange={keyWordChange} />
-        <input type="submit" />
+      <form className="searchForm" onSubmit={search}>
+        <input
+          className="searchInput text-capitalize"
+          type="search"
+          autoFocus={true}
+          onChange={keyWordChange}
+        />
+        <input className="submitButton " type="submit" value="🔎" />
       </form>
       <div className="col">
         <Word results={results} />

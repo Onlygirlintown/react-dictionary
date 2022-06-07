@@ -4,13 +4,9 @@
   --third-color: #f4c7ab;
   --fourth-color: #b2b8a3;
 }
-
-h3 {
-  color: var(--third-color);
-}
-.definition {
+h2 {
+  font-size: 80px;
+  text-align: center;
+  margin-top: 80px;
   color: var(--fourth-color);
-}
-.example {
-  color: var(--third-color);
 }

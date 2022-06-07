@@ -5,12 +5,17 @@
   --fourth-color: #b2b8a3;
 }
 
-h3 {
-  color: var(--third-color);
-}
-.definition {
+.phoneticsDiv {
+  text-align: center;
   color: var(--fourth-color);
+  font-weight: bold;
 }
-.example {
+
+a {
+  text-decoration: none;
+  color: var(--fourth-color);
+  font-weight: bold;
+}
+:hover a {
   color: var(--third-color);
 }

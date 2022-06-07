@@ -1,0 +1,24 @@
+:root {
+  --main-color: #fff5eb;
+  --second-color: #deedf0;
+  --third-color: #f4c7ab;
+  --fourth-color: #b2b8a3;
+}
+.searchForm {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: none;
+}
+
+.searchInput {
+  background-color: var(--main-color);
+  color: var(--third-color);
+  border: none;
+  text-align: center;
+}
+.submitButton {
+  background-color: var(--main-color);
+  border: none;
+  color: #b2b8a3;
+}
