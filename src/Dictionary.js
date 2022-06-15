@@ -5,26 +5,34 @@ import Photos from "./Photos";
 import Word from "./Word";
 import "./Dictionary.css";
 
-export default function Dictionary() {
-  let [keyword, setKeyword] = useState("");
-  let [results, setResults] = useState("");
-  let [photos, setPhotos] = useState("");
+export default function Dictionary(props) {
+  console.log(props);
+  let [keyword, setKeyword] = useState(props.defaultKeyword);
+  let [results, setResults] = useState(null);
 
-  function handleDictionaryResponse(response) {
-    console.log(response);
-    setResults(response.data[0]);
-  }
+  let [loaded, setLoaded] = useState(false);
+  let [photos, setPhotos] = useState(null);
 
   function handlePexelsResponse(response) {
+    console.log(response);
     setPhotos(response.data.photos);
   }
 
-  function search(event) {
+  function keyWordChange(event) {
     event.preventDefault();
-    alert(`searching for ${keyword}`);
+    setKeyword(event.target.value);
+  }
 
-    let word = `${keyword}`;
-    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+  function handleDictionaryResponse(response) {
+    setResults(response.data[0]);
+  }
+  function load() {
+    setLoaded(true);
+    search();
+  }
+
+  function search() {
+    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
 
     axios.get(apiUrl).then(handleDictionaryResponse);
 
@@ -36,29 +44,35 @@ export default function Dictionary() {
       .then(handlePexelsResponse);
   }
 
-  function keyWordChange(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    setKeyword(event.target.value);
+    search();
   }
-  return (
-    <div className="Dictionary row">
-      <form className="searchForm" onSubmit={search}>
-        <input
-          className="searchInput text-capitalize"
-          type="search"
-          autoFocus={true}
-          onChange={keyWordChange}
-        />
-        <input className="submitButton " type="submit" value="🔎" />
-      </form>
-      <div className="col">
-        <Word results={results} />
-      </div>
-      <div className="col">
-        <Photos photos={photos} />
-      </div>
+  if (loaded) {
+    return (
+      <div className="Dictionary row">
+        <form className="searchForm" onSubmit={handleSubmit}>
+          <input
+            className="searchInput text-capitalize"
+            type="search"
+            autoFocus={true}
+            onChange={keyWordChange}
+            placeholder={keyword}
+          />
+          <input className="submitButton " type="submit" value="🔎" />
+        </form>
+        <div className="col">
+          <Word results={results} />
+        </div>
+        <div className="col">
+          <Photos photos={photos} />
+        </div>
 
-      <Results results={results} />
-    </div>
-  );
+        <Results results={results} />
+      </div>
+    );
+  } else {
+    load();
+    return "loading";
+  }
 }
