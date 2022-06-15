@@ -8,7 +8,7 @@ export default function Word(props) {
   } else {
     return (
       <div>
-        <h2 className="text-capitalize">{props.results.word}</h2>
+        <h2 className="text-capitalize word">{props.results.word}</h2>
         <Phonetics phonetics={props.results.phonetics} />
       </div>
     );

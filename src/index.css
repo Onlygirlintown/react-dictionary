@@ -28,3 +28,8 @@ code {
 .synonym {
   color: red;
 }
+@media (max-width: 380px) {
+  .container {
+    max-width: 90%;
+  }
+}
