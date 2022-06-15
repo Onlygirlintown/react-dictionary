@@ -13,9 +13,13 @@ export default function Dictionary(props) {
   let [loaded, setLoaded] = useState(false);
   let [photos, setPhotos] = useState(null);
 
+  function handleDictionaryResponse(response) {
+    setResults(response.data[0]);
+    console.log(setResults);
+  }
   function handlePexelsResponse(response) {
-    console.log(response);
     setPhotos(response.data.photos);
+    console.log(setPhotos);
   }
 
   function keyWordChange(event) {
@@ -23,9 +27,6 @@ export default function Dictionary(props) {
     setKeyword(event.target.value);
   }
 
-  function handleDictionaryResponse(response) {
-    setResults(response.data[0]);
-  }
   function load() {
     setLoaded(true);
     search();
