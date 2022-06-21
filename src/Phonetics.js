@@ -2,7 +2,7 @@ import React from "react";
 import "./Phonetics.css";
 
 export default function Phonetics(props) {
-  console.log(props.phonetics);
+  console.log(props);
   const audioLink = props.phonetics[0].audio;
   const audioLinkTwo = props.phonetics[1].audio;
 
@@ -16,8 +16,7 @@ export default function Phonetics(props) {
         {props.phonetics[0].text}
       </div>
     );
-  }
-  if (audioLinkTwo.length > 0) {
+  } else if (audioLinkTwo.length > 0) {
     return (
       <div className="phoneticsDiv">
         <a href={props.phonetics[1].audio} target="_blank" rel="noreferrer">
