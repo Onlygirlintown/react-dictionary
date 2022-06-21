@@ -2,39 +2,24 @@ import React from "react";
 import "./Phonetics.css";
 
 export default function Phonetics(props) {
-  console.log(props);
-  const audioLink = props.phonetics[0].audio;
-  const audioLinkTwo = props.phonetics[1].audio;
-
-  if (audioLink.length > 0) {
-    return (
-      <div className="phoneticsDiv">
-        <a href={props.phonetics[0].audio} target="_blank" rel="noreferrer">
-          listen 🗣️
-        </a>
-        <br />
-        {props.phonetics[0].text}
-      </div>
-    );
-  } else if (audioLinkTwo.length > 0) {
-    return (
-      <div className="phoneticsDiv">
-        <a href={props.phonetics[1].audio} target="_blank" rel="noreferrer">
-          listen 🗣️
-        </a>
-        <br />
-        {props.phonetics[0].text}
-      </div>
-    );
-  } else {
-    return (
-      <div className="phoneticsDiv">
-        <a href={props.phonetics[2].audio} target="_blank" rel="noreferrer">
-          listen 🗣️
-        </a>
-        <br />
-        {props.phonetics[0].text}
-      </div>
-    );
-  }
+  let foundFirstAudio = false;
+  const audioLinks = props.phonetics.map((phonetic, index) => {
+    console.log(phonetic);
+    if (phonetic.audio && foundFirstAudio == false) {
+      foundFirstAudio = true;
+      return (
+        <div className="phoneticsDiv" key={index}>
+          <a href={phonetic.audio} target="_blank" rel="noreferrer">
+            listen 🗣️
+          </a>
+          <br />
+          {phonetic.text}
+        </div>
+      );
+    } else {
+      // either there was no audio OR I already found the first one
+      return null;
+    }
+  });
+  return <div>{audioLinks.length > 0 ? audioLinks : null}</div>;
 }
